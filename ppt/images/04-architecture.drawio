@@ -1,0 +1,236 @@
+<mxfile host="app.diagrams.net" modified="2026-05-24T00:00:00.000Z" agent="draw.io" version="24.0.0">
+  <diagram name="系统架构图" id="arch-001">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="750" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- ===== 背景色 ===== -->
+        <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fafaf8;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1200" height="750" as="geometry" />
+        </mxCell>
+
+        <!-- ===== 标题 ===== -->
+        <mxCell id="title" value="系统总体架构：K230 + STM32 异构双核设计" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Inter,Noto Sans SC,sans-serif;fontSize=22;fontColor=#0a0a0a;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="18" width="800" height="36" as="geometry" />
+        </mxCell>
+
+        <!-- ============ 层1: 感知层 ============ -->
+        <mxCell id="layer1-bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f0f0ee;strokeColor=#d4d4d2;strokeWidth=1;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="60" y="70" width="1080" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="layer1-label" value="感知层 · Perception" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Inter,Noto Sans SC,sans-serif;fontSize=14;fontColor=#002FA7;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="76" y="76" width="200" height="24" as="geometry" />
+        </mxCell>
+
+        <!-- 感知层: 摄像头 -->
+        <mxCell id="cam" value="&lt;b&gt;📷 摄像头&lt;/b&gt;&lt;br&gt;MIPI CSI&lt;br&gt;OV5647 / GC2053" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#002FA7;strokeWidth=1.5;fontFamily=Inter,Noto Sans SC,sans-serif;fontSize=13;fontColor=#0a0a0a;arcSize=8;" vertex="1" parent="1">
+          <mxGeometry x="100" y="112" width="170" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- 感知层: 麦克风 -->
+        <mxCell id="mic" value="&lt;b&gt;🎤 麦克风&lt;/b&gt;&lt;br&gt;I2S MEMS&lt;br&gt;语音采集" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d4d4d2;strokeWidth=1;fontFamily=Inter,Noto Sans SC,sans-serif;fontSize=13;fontColor=#0a0a0a;arcSize=8;" vertex="1" parent="1">
+          <mxGeometry x="310" y="112" width="160" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- K230 NPU 核心 -->
+        <mxCell id="npu" value="&lt;b style=&quot;font-size:15px&quot;&gt;K230 NPU&lt;/b&gt;&lt;br&gt;&lt;br&gt;1.6 TOPS 算力&lt;br&gt;人脸检测 · 特征提取&lt;br&gt;kmodel 本地推理&lt;br&gt;推理延迟 &amp;lt; 10ms" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#002FA7;strokeColor=#002FA7;strokeWidth=1.5;fontFamily=Inter,Noto Sans SC,sans-serif;fontSize=12;fontColor=#ffffff;arcSize=8;" vertex="1" parent="1">
+          <mxGeometry x="540" y="106" width="210" height="122" as="geometry" />
+        </mxCell>
+
+        <!-- 感知层内部箭头 -->
+        <mxCell id="arr-cam-npu" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#002FA7;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="480" y="167" />
+              <mxPoint x="480" y="167" />
+            </Array>
+            <mxPoint x="270" y="167" as="sourcePoint" />
+            <mxPoint x="540" y="167" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr-cam-npu-label" value="MIPI" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=JetBrains Mono,monospace;fontSize=11;fontColor=#002FA7;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="150" width="40" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="arr-mic-npu" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d4d4d2;strokeWidth=1;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="508" y="167" as="sourcePoint" />
+            <mxPoint x="540" y="167" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ===== 感知层→决策层 纵向箭头 ===== -->
+        <mxCell id="arr-l1-l2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#002FA7;strokeWidth=3;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="600" y="240" as="sourcePoint" />
+            <mxPoint x="600" y="280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr-l1-l2-label" value="NPU → CPU 内部总线" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=JetBrains Mono,monospace;fontSize=10;fontColor=#737373;" vertex="1" parent="1">
+          <mxGeometry x="605" y="248" width="120" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- ============ 层2: 决策层 ============ -->
+        <mxCell id="layer2-bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f0f0ee;strokeColor=#d4d4d2;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="280" width="1080" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="layer2-label" value="决策层 · Decision" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Inter,Noto Sans SC,sans-serif;fontSize=14;fontColor=#002FA7;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="76" y="286" width="200" height="24" as="geometry" />
+        </mxCell>
+
+        <!-- K230 CPU -->
+        <mxCell id="cpu" value="&lt;b style=&quot;font-size:15px&quot;&gt;K230 CPU&lt;/b&gt;&lt;br&gt;&lt;br&gt;RISC-V 双核 64bit&lt;br&gt;Linux + Python 3.x&lt;br&gt;主控逻辑 · 线程调度&lt;br&gt;情绪映射 · 指令决策" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#002FA7;strokeWidth=1.5;fontFamily=Inter,Noto Sans SC,sans-serif;fontSize=12;fontColor=#0a0a0a;arcSize=8;" vertex="1" parent="1">
+          <mxGeometry x="100" y="322" width="220" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- WiFi Cloud LLM -->
+        <mxCell id="wifi-box" value="&lt;b&gt;WiFi 通信&lt;/b&gt;&lt;br&gt;HTTPS / WebSocket" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d4d4d2;strokeWidth=1;fontFamily=Inter,Noto Sans SC,sans-serif;fontSize=13;fontColor=#0a0a0a;arcSize=8;" vertex="1" parent="1">
+          <mxGeometry x="400" y="322" width="180" height="56" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cloud" value="&lt;b style=&quot;font-size:15px&quot;&gt;☁️ 云端 LLM&lt;/b&gt;&lt;br&gt;&lt;br&gt;DeepSeek / 通义千问&lt;br&gt;自然语言对话生成&lt;br&gt;情绪分析 · TTS 合成" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d4d4d2;strokeWidth=1;fontFamily=Inter,Noto Sans SC,sans-serif;fontSize=12;fontColor=#0a0a0a;arcSize=8;" vertex="1" parent="1">
+          <mxGeometry x="640" y="322" width="220" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- 决策层内部箭头 -->
+        <mxCell id="arr-cpu-wifi" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#002FA7;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="320" y="377" as="sourcePoint" />
+            <mxPoint x="400" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr-cpu-wifi-label" value="WiFi" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=JetBrains Mono,monospace;fontSize=11;fontColor=#002FA7;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="330" y="354" width="55" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="arr-wifi-cloud" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#002FA7;strokeWidth=2;endArrow=block;endFill=1;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="350" as="sourcePoint" />
+            <mxPoint x="640" y="377" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr-wifi-cloud-label" value="API" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=JetBrains Mono,monospace;fontSize=11;fontColor=#002FA7;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="588" y="338" width="40" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- ===== 决策层→执行层 纵向箭头 ===== -->
+        <mxCell id="arr-l2-l3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#002FA7;strokeWidth=3;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="600" y="450" as="sourcePoint" />
+            <mxPoint x="600" y="490" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr-l2-l3-label" value="UART 115200 8N1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=JetBrains Mono,monospace;fontSize=10;fontColor=#737373;" vertex="1" parent="1">
+          <mxGeometry x="602" y="458" width="120" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- ============ 层3: 执行层 ============ -->
+        <mxCell id="layer3-bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f0f0ee;strokeColor=#d4d4d2;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="490" width="1080" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="layer3-label" value="执行层 · Execution" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Inter,Noto Sans SC,sans-serif;fontSize=14;fontColor=#002FA7;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="76" y="496" width="200" height="24" as="geometry" />
+        </mxCell>
+
+        <!-- UART 桥接 -->
+        <mxCell id="uart" value="&lt;b&gt;UART 桥接&lt;/b&gt;&lt;br&gt;&lt;br&gt;PB10 / PB11&lt;br&gt;USART3&lt;br&gt;单字节指令协议&lt;br&gt;0x29 - 0x50" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#002FA7;strokeWidth=1.5;fontFamily=Inter,Noto Sans SC,sans-serif;fontSize=12;fontColor=#0a0a0a;arcSize=8;" vertex="1" parent="1">
+          <mxGeometry x="100" y="534" width="180" height="108" as="geometry" />
+        </mxCell>
+
+        <!-- STM32 -->
+        <mxCell id="stm32" value="&lt;b style=&quot;font-size:15px&quot;&gt;STM32F103C8&lt;/b&gt;&lt;br&gt;&lt;br&gt;Cortex-M3 72MHz&lt;br&gt;裸机 C 语言&lt;br&gt;中断驱动 · 实时控制" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d4d4d2;strokeWidth=1;fontFamily=Inter,Noto Sans SC,sans-serif;fontSize=12;fontColor=#0a0a0a;arcSize=8;" vertex="1" parent="1">
+          <mxGeometry x="350" y="534" width="210" height="108" as="geometry" />
+        </mxCell>
+
+        <!-- 执行器件 -->
+        <mxCell id="servo" value="&lt;b&gt;舵机 ×4&lt;/b&gt;&lt;br&gt;行走/跳跃/摇摆" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0ee;strokeColor=#d4d4d2;strokeWidth=1;fontFamily=Inter,Noto Sans SC,sans-serif;fontSize=12;fontColor=#0a0a0a;arcSize=8;" vertex="1" parent="1">
+          <mxGeometry x="640" y="534" width="140" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="oled" value="&lt;b&gt;OLED 128×64&lt;/b&gt;&lt;br&gt;6 种表情显示" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0ee;strokeColor=#d4d4d2;strokeWidth=1;fontFamily=Inter,Noto Sans SC,sans-serif;fontSize=12;fontColor=#0a0a0a;arcSize=8;" vertex="1" parent="1">
+          <mxGeometry x="640" y="592" width="140" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="led" value="&lt;b&gt;LED + 呼吸灯&lt;/b&gt;&lt;br&gt;灯光效果 · 电量检测" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0ee;strokeColor=#d4d4d2;strokeWidth=1;fontFamily=Inter,Noto Sans SC,sans-serif;fontSize=12;fontColor=#0a0a0a;arcSize=8;" vertex="1" parent="1">
+          <mxGeometry x="820" y="534" width="160" height="108" as="geometry" />
+        </mxCell>
+
+        <!-- 执行层内部箭头 -->
+        <mxCell id="arr-uart-stm32" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#002FA7;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="588" as="sourcePoint" />
+            <mxPoint x="350" y="588" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr-uart-stm32-label" value="UART" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=JetBrains Mono,monospace;fontSize=11;fontColor=#002FA7;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="292" y="572" width="46" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="arr-stm32-servo" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#737373;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="610" y="559" />
+              <mxPoint x="610" y="559" />
+            </Array>
+            <mxPoint x="560" y="559" as="sourcePoint" />
+            <mxPoint x="640" y="559" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr-stm32-oled" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#737373;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="560" y="617" as="sourcePoint" />
+            <mxPoint x="640" y="617" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr-stm32-led" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#737373;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="780" y="588" />
+              <mxPoint x="780" y="588" />
+            </Array>
+            <mxPoint x="560" y="588" as="sourcePoint" />
+            <mxPoint x="820" y="588" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- PWM label -->
+        <mxCell id="pwm-label" value="PWM" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=JetBrains Mono,monospace;fontSize=10;fontColor=#737373;" vertex="1" parent="1">
+          <mxGeometry x="580" y="542" width="40" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- ===== 图例 ===== -->
+        <mxCell id="legend-box" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d4d4d2;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="920" y="70" width="220" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-title" value="图例" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Inter,Noto Sans SC,sans-serif;fontSize=12;fontColor=#0a0a0a;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="936" y="76" width="60" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-accent" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#002FA7;strokeColor=#002FA7;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="936" y="102" width="24" height="12" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-accent-label" value="K230 核心模块" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Inter,Noto Sans SC,sans-serif;fontSize=11;fontColor=#0a0a0a;" vertex="1" parent="1">
+          <mxGeometry x="968" y="98" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-outline" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#002FA7;strokeWidth=1.5;" vertex="1" parent="1">
+          <mxGeometry x="936" y="120" width="24" height="12" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-outline-label" value="外围组件" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Inter,Noto Sans SC,sans-serif;fontSize=11;fontColor=#0a0a0a;" vertex="1" parent="1">
+          <mxGeometry x="968" y="116" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-sub" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f0f0ee;strokeColor=#d4d4d2;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="936" y="138" width="24" height="12" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-sub-label" value="子模块 / 器件" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Inter,Noto Sans SC,sans-serif;fontSize=11;fontColor=#0a0a0a;" vertex="1" parent="1">
+          <mxGeometry x="968" y="134" width="120" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- ===== 底部说明 ===== -->
+        <mxCell id="footnote" value="K230 与 STM32 通过 UART 串口实现异构通信 · 协议复用现有 0x29-0x50 指令集 · STM32 固件无需改动" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Inter,Noto Sans SC,sans-serif;fontSize=11;fontColor=#737373;" vertex="1" parent="1">
+          <mxGeometry x="200" y="710" width="800" height="24" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
